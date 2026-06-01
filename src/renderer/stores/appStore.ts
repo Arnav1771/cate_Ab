@@ -302,6 +302,9 @@ interface AppStoreActions {
   createCanvas: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
   createAgent: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
   createDocument: (workspaceId: string, filePath?: string, documentType?: 'pdf' | 'docx' | 'image', position?: Point, placement?: PanelPlacement) => string
+  createN8nFlow: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createFlowiseAI: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createBrowserAutomation: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
 
   // Ensure the center dock zone contains a canvas panel for the given workspace.
   // Covers session-restore and new-workspace paths where the center layout may
@@ -822,6 +825,36 @@ export const useAppStore = create<AppStore>((set, get) => ({
       id: generateId(),
       type: 'agent',
       title: 'Agent',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createN8nFlow(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'n8n',
+      title: 'n8n Workflows',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createFlowiseAI(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'flowise',
+      title: 'FloWise AI',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createBrowserAutomation(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'browser-automation',
+      title: 'Browser Automation',
       isDirty: false,
     }
     return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
