@@ -973,6 +973,9 @@ export const PANEL_CANVAS_DROP_SIZES: Record<PanelType, Size> = {
   canvas: { width: 640, height: 480 },
   agent: { width: 520, height: 440 },
   document: { width: 640, height: 480 },
+  n8n: { width: 600, height: 400 },
+  flowise: { width: 600, height: 400 },
+  'browser-automation': { width: 540, height: 360 },
 }
 
 // -----------------------------------------------------------------------------

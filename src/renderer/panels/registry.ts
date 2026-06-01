@@ -19,6 +19,9 @@ import {
   FileText,
   SquaresFour,
   FileDoc,
+  Gear,
+  Brain,
+  ArrowsClockwise,
   type Icon as PhosphorIcon,
 } from '@phosphor-icons/react'
 import { CateLogo } from '../ui/CateLogo'
@@ -40,6 +43,9 @@ const BrowserPanel = React.lazy(() => import('./BrowserPanel'))
 const CanvasPanel = React.lazy(() => import('./CanvasPanel'))
 const AgentPanel = React.lazy(() => import('../../agent/renderer/AgentPanel'))
 const DocumentPanel = React.lazy(() => import('./DocumentPanel'))
+const N8nFlowPanel = React.lazy(() => import('./N8nFlowPanel'))
+const FlowiseAIPanel = React.lazy(() => import('./FlowiseAIPanel'))
+const BrowserAutomationPanel = React.lazy(() => import('./BrowserAutomationPanel'))
 
 // -----------------------------------------------------------------------------
 // Renderer definition
@@ -119,6 +125,27 @@ export const PANEL_REGISTRY: Record<PanelType, RendererPanelDefinition> = {
     Component: DocumentPanel,
     create: ({ workspaceId, canvasPoint, placement, filePath, documentType }) =>
       useAppStore.getState().createDocument(workspaceId, filePath, documentType, canvasPoint, placement) || null,
+  },
+  n8n: {
+    ...PANEL_DEFINITIONS.n8n,
+    icon: Gear,
+    Component: N8nFlowPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createN8nFlow(workspaceId, canvasPoint, placement) || null,
+  },
+  flowise: {
+    ...PANEL_DEFINITIONS.flowise,
+    icon: Brain,
+    Component: FlowiseAIPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createFlowiseAI(workspaceId, canvasPoint, placement) || null,
+  },
+  'browser-automation': {
+    ...PANEL_DEFINITIONS['browser-automation'],
+    icon: ArrowsClockwise,
+    Component: BrowserAutomationPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createBrowserAutomation(workspaceId, canvasPoint, placement) || null,
   },
 }
 
