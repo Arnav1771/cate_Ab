@@ -26,6 +26,7 @@ import { renderPanelComponent, PANEL_REGISTRY } from './panels/registry'
 const CanvasPanel = PANEL_REGISTRY.canvas.Component
 import { NodeSwitcher } from './ui/NodeSwitcher'
 import { CommandPalette } from './ui/CommandPalette'
+import { NewCanvasDialog } from './ui/NewCanvasDialog'
 import { SettingsWindow } from './settings/SettingsWindow'
 import { SavedLayoutsDialog } from './dialogs/SavedLayoutsDialog'
 import { PostUpdateFeedbackDialog } from './dialogs/PostUpdateFeedbackDialog'
@@ -532,6 +533,7 @@ function MainApp() {
       {/* Modal overlays */}
       {showNodeSwitcher && <NodeSwitcher />}
       {showCommandPalette && <CommandPalette />}
+      <NewCanvasDialog />
       {showSettings && (
         <SettingsWindow isOpen={showSettings} onClose={closeSettings} initialTab={settingsInitialTab ?? undefined} />
       )}

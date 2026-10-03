@@ -149,10 +149,10 @@ export const CommandPalette: React.FC = () => {
       },
       {
         id: 'newCanvas',
-        title: 'New Canvas',
+        title: 'New Canvas...',
         shortcutText: '',
         icon: <LayoutIcon />,
-        action: () => createCanvas(selectedWorkspaceId),
+        action: () => useUIStore.getState().setShowNewCanvasDialog(true),
       },
       {
         id: 'toggleSidebar',

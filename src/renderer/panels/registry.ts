@@ -22,6 +22,10 @@ import {
   Gear,
   Brain,
   ArrowsClockwise,
+  Robot,
+  Network,
+  Database,
+  ChatCircle,
   type Icon as PhosphorIcon,
 } from '@phosphor-icons/react'
 import { CateLogo } from '../ui/CateLogo'
@@ -46,6 +50,10 @@ const DocumentPanel = React.lazy(() => import('./DocumentPanel'))
 const N8nFlowPanel = React.lazy(() => import('./N8nFlowPanel'))
 const FlowiseAIPanel = React.lazy(() => import('./FlowiseAIPanel'))
 const BrowserAutomationPanel = React.lazy(() => import('./BrowserAutomationPanel'))
+const RivetPanel = React.lazy(() => import('./RivetPanel'))
+const AutoGenPanel = React.lazy(() => import('./AutoGenPanel'))
+const WebUIPanel = React.lazy(() => import('./WebUIPanel'))
+const AnythingLLMPanel = React.lazy(() => import('./AnythingLLMPanel'))
 
 // -----------------------------------------------------------------------------
 // Renderer definition
@@ -146,6 +154,34 @@ export const PANEL_REGISTRY: Record<PanelType, RendererPanelDefinition> = {
     Component: BrowserAutomationPanel,
     create: ({ workspaceId, canvasPoint, placement }) =>
       useAppStore.getState().createBrowserAutomation(workspaceId, canvasPoint, placement) || null,
+  },
+  rivet: {
+    ...PANEL_DEFINITIONS.rivet,
+    icon: Network,
+    Component: RivetPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createRivet(workspaceId, canvasPoint, placement) || null,
+  },
+  autogen: {
+    ...PANEL_DEFINITIONS.autogen,
+    icon: Robot,
+    Component: AutoGenPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createAutoGen(workspaceId, canvasPoint, placement) || null,
+  },
+  webui: {
+    ...PANEL_DEFINITIONS.webui,
+    icon: ChatCircle,
+    Component: WebUIPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createWebUI(workspaceId, canvasPoint, placement) || null,
+  },
+  anythingllm: {
+    ...PANEL_DEFINITIONS.anythingllm,
+    icon: Database,
+    Component: AnythingLLMPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createAnythingLLM(workspaceId, canvasPoint, placement) || null,
   },
 }
 

@@ -305,6 +305,10 @@ interface AppStoreActions {
   createN8nFlow: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
   createFlowiseAI: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
   createBrowserAutomation: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createRivet: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createAutoGen: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createWebUI: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createAnythingLLM: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
 
   // Ensure the center dock zone contains a canvas panel for the given workspace.
   // Covers session-restore and new-workspace paths where the center layout may
@@ -845,6 +849,46 @@ export const useAppStore = create<AppStore>((set, get) => ({
       id: generateId(),
       type: 'flowise',
       title: 'FloWise AI',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createRivet(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'rivet',
+      title: 'Rivet AI',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createAutoGen(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'autogen',
+      title: 'AutoGen Studio',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createWebUI(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'webui',
+      title: 'Open WebUI',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createAnythingLLM(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'anythingllm',
+      title: 'AnythingLLM',
       isDirty: false,
     }
     return addAndPlacePanel(set, get, workspaceId, panel, placement, position)

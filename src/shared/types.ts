@@ -29,7 +29,7 @@ export interface Rect {
 // Panel types
 // -----------------------------------------------------------------------------
 
-export type PanelType = 'terminal' | 'browser' | 'editor' | 'canvas' | 'agent' | 'document' | 'n8n' | 'flowise' | 'browser-automation'
+export type PanelType = 'terminal' | 'browser' | 'editor' | 'canvas' | 'agent' | 'document' | 'n8n' | 'flowise' | 'browser-automation' | 'rivet' | 'autogen' | 'webui' | 'anythingllm'
 
 // -----------------------------------------------------------------------------
 // Canvas node
@@ -976,6 +976,10 @@ export const PANEL_CANVAS_DROP_SIZES: Record<PanelType, Size> = {
   n8n: { width: 600, height: 400 },
   flowise: { width: 600, height: 400 },
   'browser-automation': { width: 540, height: 360 },
+  rivet: { width: 640, height: 440 },
+  autogen: { width: 640, height: 440 },
+  webui: { width: 640, height: 440 },
+  anythingllm: { width: 640, height: 440 },
 }
 
 // -----------------------------------------------------------------------------
