@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { PANEL_DEFINITIONS, PANEL_TYPES, getSharedPanelDef } from '../../shared/panels'
-import { PANEL_REGISTRY, getPanelDef } from './registry'
+import { PANEL_DEFINITIONS, PANEL_TYPES, getSharedPanelDef } from './panels'
+import type { PanelType } from './types'
 
-describe('Embedded AI Service Panels (AgentDeck & Roundtable)', () => {
-  it('registers agentdeck in PANEL_TYPES and PANEL_DEFINITIONS', () => {
+describe('PANEL_DEFINITIONS and PANEL_TYPES', () => {
+  it('registers agentdeck with valid styling, sizes, and canvas capability', () => {
     expect(PANEL_TYPES).toContain('agentdeck')
     const def = PANEL_DEFINITIONS.agentdeck
     expect(def).toBeDefined()
@@ -13,9 +13,10 @@ describe('Embedded AI Service Panels (AgentDeck & Roundtable)', () => {
     expect(def.canLiveOnCanvas).toBe(true)
     expect(def.defaultSize.width).toBeGreaterThanOrEqual(def.minimumSize.width)
     expect(def.defaultSize.height).toBeGreaterThanOrEqual(def.minimumSize.height)
+    expect(def.ghostSvg).toContain('<svg')
   })
 
-  it('registers roundtable in PANEL_TYPES and PANEL_DEFINITIONS', () => {
+  it('registers roundtable with valid styling, sizes, and canvas capability', () => {
     expect(PANEL_TYPES).toContain('roundtable')
     const def = PANEL_DEFINITIONS.roundtable
     expect(def).toBeDefined()
@@ -25,6 +26,7 @@ describe('Embedded AI Service Panels (AgentDeck & Roundtable)', () => {
     expect(def.canLiveOnCanvas).toBe(true)
     expect(def.defaultSize.width).toBeGreaterThanOrEqual(def.minimumSize.width)
     expect(def.defaultSize.height).toBeGreaterThanOrEqual(def.minimumSize.height)
+    expect(def.ghostSvg).toContain('<svg')
   })
 
   it('resolves shared definitions via getSharedPanelDef helper', () => {
@@ -34,22 +36,21 @@ describe('Embedded AI Service Panels (AgentDeck & Roundtable)', () => {
     expect(rtDef.label).toBe('Roundtable Room')
   })
 
-  it('registers renderer definitions with components and factories in PANEL_REGISTRY', () => {
-    const deckReg = PANEL_REGISTRY.agentdeck
-    expect(deckReg).toBeDefined()
-    expect(deckReg.icon).toBeDefined()
-    expect(deckReg.Component).toBeDefined()
-    expect(typeof deckReg.create).toBe('function')
-
-    const rtReg = PANEL_REGISTRY.roundtable
-    expect(rtReg).toBeDefined()
-    expect(rtReg.icon).toBeDefined()
-    expect(rtReg.Component).toBeDefined()
-    expect(typeof rtReg.create).toBe('function')
+  it('falls back to editor definition for completely unknown panel types', () => {
+    const fallback = getSharedPanelDef('completely-unknown-service')
+    expect(fallback.type).toBe('editor')
   })
 
-  it('falls back to editor definition for completely unknown panel types', () => {
-    const fallback = getPanelDef('completely-unknown-service')
-    expect(fallback.type).toBe('editor')
+  it('every panel type has a complete definition with positive dimensions', () => {
+    for (const type of PANEL_TYPES) {
+      const def = PANEL_DEFINITIONS[type as PanelType]
+      expect(def, `missing definition for ${type}`).toBeDefined()
+      expect(def.label.length).toBeGreaterThan(0)
+      expect(def.brandColor.startsWith('#') || def.brandColor.startsWith('rgb')).toBe(true)
+      expect(def.defaultSize.width).toBeGreaterThan(0)
+      expect(def.defaultSize.height).toBeGreaterThan(0)
+      expect(def.minimumSize.width).toBeGreaterThan(0)
+      expect(def.minimumSize.height).toBeGreaterThan(0)
+    }
   })
 })
