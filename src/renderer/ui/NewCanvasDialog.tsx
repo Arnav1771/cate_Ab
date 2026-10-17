@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { SquaresFour, Gear, Brain, Network, Robot, ChatCircle, Database } from '@phosphor-icons/react'
+import { SquaresFour, Gear, Brain, Network, Robot, ChatCircle, Database, Gauge, UsersThree } from '@phosphor-icons/react'
 import { useUIStore } from '../stores/uiStore'
 import { useAppStore } from '../stores/appStore'
 
@@ -27,6 +27,8 @@ export const NewCanvasDialog: React.FC = () => {
 
   const options = [
     { id: 'blank', name: 'Blank Canvas', desc: 'Standard infinite board', icon: <SquaresFour weight="fill" />, color: 'bg-violet-500', action: () => app.createCanvas(selectedWorkspaceId, undefined, dockCenter) },
+    { id: 'agentdeck', name: 'AgentDeck Control Tower', desc: 'Monitor local AI agent fleet & cost burn', icon: <Gauge weight="fill" />, color: 'bg-amber-500', action: () => app.createAgentDeck(selectedWorkspaceId, undefined, dockCenter) },
+    { id: 'roundtable', name: 'Roundtable Room', desc: 'Multi-agent collaborative session', icon: <UsersThree weight="fill" />, color: 'bg-indigo-500', action: () => app.createRoundtable(selectedWorkspaceId, undefined, dockCenter) },
     { id: 'n8n', name: 'n8n Automation', desc: 'API & Workflow orchestration', icon: <Gear weight="fill" />, color: 'bg-red-500', action: () => app.createN8nFlow(selectedWorkspaceId, undefined, dockCenter) },
     { id: 'flowise', name: 'FloWise AI', desc: 'Visual Agent builder', icon: <Brain weight="fill" />, color: 'bg-purple-500', action: () => app.createFlowiseAI(selectedWorkspaceId, undefined, dockCenter) },
     { id: 'rivet', name: 'Rivet AI', desc: 'AI chain programming', icon: <Network weight="fill" />, color: 'bg-blue-500', action: () => app.createRivet(selectedWorkspaceId, undefined, dockCenter) },

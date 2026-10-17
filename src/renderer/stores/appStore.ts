@@ -309,6 +309,8 @@ interface AppStoreActions {
   createAutoGen: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
   createWebUI: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
   createAnythingLLM: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createAgentDeck: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
+  createRoundtable: (workspaceId: string, position?: Point, placement?: PanelPlacement) => string
 
   // Ensure the center dock zone contains a canvas panel for the given workspace.
   // Covers session-restore and new-workspace paths where the center layout may
@@ -889,6 +891,26 @@ export const useAppStore = create<AppStore>((set, get) => ({
       id: generateId(),
       type: 'anythingllm',
       title: 'AnythingLLM',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createAgentDeck(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'agentdeck',
+      title: 'AgentDeck Control Tower',
+      isDirty: false,
+    }
+    return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
+  },
+
+  createRoundtable(workspaceId, position?, placement?) {
+    const panel: PanelState = {
+      id: generateId(),
+      type: 'roundtable',
+      title: 'Roundtable Room',
       isDirty: false,
     }
     return addAndPlacePanel(set, get, workspaceId, panel, placement, position)
