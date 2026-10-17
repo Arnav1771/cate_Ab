@@ -19,6 +19,8 @@ import {
   Square,
   FloppyDisk,
   ArrowsClockwise,
+  Gauge,
+  UsersThree,
 } from '@phosphor-icons/react'
 import type { PanelType } from '../../shared/types'
 import { CateLogo } from './CateLogo'
@@ -91,6 +93,8 @@ export const CommandPalette: React.FC = () => {
   const createEditor = useAppStore((s) => s.createEditor)
   const createCanvas = useAppStore((s) => s.createCanvas)
   const createAgent = useAppStore((s) => s.createAgent)
+  const createAgentDeck = useAppStore((s) => s.createAgentDeck)
+  const createRoundtable = useAppStore((s) => s.createRoundtable)
   const toggleSidebar = useUIStore((s) => s.toggleSidebar)
   const setActiveRightSidebarView = useUIStore((s) => s.setActiveRightSidebarView)
   const canvasApi = useCanvasStoreApi()
@@ -146,6 +150,20 @@ export const CommandPalette: React.FC = () => {
         shortcutText: '',
         icon: <AgentIcon />,
         action: () => createAgent(selectedWorkspaceId, undefined, dockCenter),
+      },
+      {
+        id: 'newAgentDeck',
+        title: 'New AgentDeck Control Tower',
+        shortcutText: '',
+        icon: <Gauge size={16} weight="fill" />,
+        action: () => createAgentDeck(selectedWorkspaceId, undefined, dockCenter),
+      },
+      {
+        id: 'newRoundtable',
+        title: 'New Roundtable Room',
+        shortcutText: '',
+        icon: <UsersThree size={16} weight="fill" />,
+        action: () => createRoundtable(selectedWorkspaceId, undefined, dockCenter),
       },
       {
         id: 'newCanvas',

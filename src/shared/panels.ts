@@ -213,6 +213,30 @@ export const PANEL_DEFINITIONS: Record<PanelType, SharedPanelDefinition> = {
     ghostSvg: ghost('rgb(16,185,129)', '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>'),
     canLiveOnCanvas: true,
   },
+  agentdeck: {
+    type: 'agentdeck',
+    label: 'AgentDeck Control Tower',
+    brandColor: '#F59E0B',
+    switcherColor: '#D97706',
+    mutedColor: '#B45309',
+    tintClass: 'text-amber-400',
+    defaultSize: { width: 900, height: 600 },
+    minimumSize: { width: 450, height: 350 },
+    ghostSvg: ghost('rgb(245,158,11)', '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>'),
+    canLiveOnCanvas: true,
+  },
+  roundtable: {
+    type: 'roundtable',
+    label: 'Roundtable Room',
+    brandColor: '#6366F1',
+    switcherColor: '#4F46E5',
+    mutedColor: '#4338CA',
+    tintClass: 'text-indigo-400',
+    defaultSize: { width: 900, height: 600 },
+    minimumSize: { width: 450, height: 350 },
+    ghostSvg: ghost('rgb(99,102,241)', '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>'),
+    canLiveOnCanvas: true,
+  },
 }
 
 /** Ordered list of every known panel type. */

@@ -26,6 +26,8 @@ import {
   Network,
   Database,
   ChatCircle,
+  Gauge,
+  UsersThree,
   type Icon as PhosphorIcon,
 } from '@phosphor-icons/react'
 import { CateLogo } from '../ui/CateLogo'
@@ -54,6 +56,8 @@ const RivetPanel = React.lazy(() => import('./RivetPanel'))
 const AutoGenPanel = React.lazy(() => import('./AutoGenPanel'))
 const WebUIPanel = React.lazy(() => import('./WebUIPanel'))
 const AnythingLLMPanel = React.lazy(() => import('./AnythingLLMPanel'))
+const AgentDeckPanel = React.lazy(() => import('./AgentDeckPanel'))
+const RoundtablePanel = React.lazy(() => import('./RoundtablePanel'))
 
 // -----------------------------------------------------------------------------
 // Renderer definition
@@ -182,6 +186,20 @@ export const PANEL_REGISTRY: Record<PanelType, RendererPanelDefinition> = {
     Component: AnythingLLMPanel,
     create: ({ workspaceId, canvasPoint, placement }) =>
       useAppStore.getState().createAnythingLLM(workspaceId, canvasPoint, placement) || null,
+  },
+  agentdeck: {
+    ...PANEL_DEFINITIONS.agentdeck,
+    icon: Gauge,
+    Component: AgentDeckPanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createAgentDeck(workspaceId, canvasPoint, placement) || null,
+  },
+  roundtable: {
+    ...PANEL_DEFINITIONS.roundtable,
+    icon: UsersThree,
+    Component: RoundtablePanel,
+    create: ({ workspaceId, canvasPoint, placement }) =>
+      useAppStore.getState().createRoundtable(workspaceId, canvasPoint, placement) || null,
   },
 }
 

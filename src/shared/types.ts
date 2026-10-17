@@ -29,7 +29,7 @@ export interface Rect {
 // Panel types
 // -----------------------------------------------------------------------------
 
-export type PanelType = 'terminal' | 'browser' | 'editor' | 'canvas' | 'agent' | 'document' | 'n8n' | 'flowise' | 'browser-automation' | 'rivet' | 'autogen' | 'webui' | 'anythingllm'
+export type PanelType = 'terminal' | 'browser' | 'editor' | 'canvas' | 'agent' | 'document' | 'n8n' | 'flowise' | 'browser-automation' | 'rivet' | 'autogen' | 'webui' | 'anythingllm' | 'agentdeck' | 'roundtable'
 
 // -----------------------------------------------------------------------------
 // Canvas node
