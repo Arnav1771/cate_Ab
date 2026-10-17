@@ -13,7 +13,7 @@ export default function AgentDeckPanel(props: AgentDeckPanelProps) {
       {...props}
       serviceId="agentdeck"
       title="AgentDeck Control Tower"
-      defaultUrl="http://localhost:8790"
+      defaultUrl="http://localhost:4317"
       launchCommand="npx agentdeck serve"
       brandColor="#F59E0B"
     />
