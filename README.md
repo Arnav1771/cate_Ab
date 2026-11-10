@@ -111,6 +111,17 @@ Cate runs all IPC through a context-isolated preload bridge. Filesystem access i
 
 **Stack:** Electron 41, React 18, Zustand 5, Monaco 0.52, xterm.js 5.5 + node-pty 1.0, Tailwind 3.4, electron-vite, electron-builder, electron-updater, Sentry. PDFs and DOCX via pdf.js and mammoth, git via simple-git, file watching via chokidar. The agent runtime is `@earendil-works/pi`.
 
+## Use as a skill
+
+This repo ships an agent skill at [`skills/cate-ab/`](skills/cate-ab/) that teaches Claude Code (or any agent that reads `SKILL.md` skills) how to install, run, build and use Cate. `SKILL.md` is the entry point.
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r skills/cate-ab ~/.claude/skills/
+```
+
+For other agents, copy the folder into that agent's skills directory. `manifest.yaml` holds catalog metadata for skill directories, and `scripts/setup.sh` clones, installs and starts the app.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Release-by-release history lives in the [CHANGELOG](CHANGELOG.md).
