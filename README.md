@@ -19,7 +19,8 @@ Download this repository as a zip and unpack it into your agent's skills folder 
 
 ```bash
 mkdir -p ~/.claude/skills
-unzip cate_Ab-*.zip -d /tmp && mv /tmp/cate_Ab-* ~/.claude/skills/cate-ab
+rm -rf /tmp/cate-ab-zip && unzip -q cate_Ab-*.zip -d /tmp/cate-ab-zip
+mv /tmp/cate-ab-zip/*/ ~/.claude/skills/cate-ab
 ```
 
 Then ask your agent to "set up Cate" or "open my project in Cate".
