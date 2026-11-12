@@ -1,0 +1,22 @@
+# Discovery metadata for the Skills-Directory catalog.
+# The agent triggers on SKILL.md frontmatter; this file powers catalog grouping and search.
+name: cate-ab
+description: "Install, run and use cate_Ab (Cate), an infinite zoomable canvas IDE with editor, terminal, browser, document and AI-agent panels laid out spatially."
+categories:
+  - developer-tools
+  - ide
+tags:
+  - canvas
+  - electron
+  - editor
+  - terminal
+  - workspace
+icon: LayoutDashboard
+version: "1.1.0"
+composesWell: []
+compat:
+  claude-code: full
+  claude-ai: partial
+  cursor: full
+  codex: full
+  gemini-cli: full
